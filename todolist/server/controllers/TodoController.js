@@ -42,6 +42,39 @@ const viewTodo = async (req, res) => {
         })
     }
 }
+const deleteTodo = async (req, res) => {
+    try {
+        let id = req.query.id;
+        await Todo.findByIdAndDelete(id);
+        return res.status(200).send({
+            success: true,
+            message: "Todo Successfully Delete",
+        })
+    } catch (err) {
+        return res.status(501).send({
+            success: false,
+            message: err
+        })
+    }
+}
+const updateTodo = async (req, res) => {
+    try {
+        let id = req.query.id;
+        await Todo.findByIdAndUpdate(id, {
+            task: req.body.task,
+            description: req.body.description
+        });
+        return res.status(200).send({
+            success: true,
+            message: "Todo Successfully Update",
+        })
+    } catch (err) {
+        return res.status(501).send({
+            success: false,
+            message: err
+        })
+    }
+}
 module.exports = {
-    addtodo, viewTodo
+    addtodo, viewTodo, deleteTodo, updateTodo
 }

@@ -2,12 +2,14 @@ const express = require('express');
 
 const routes = express.Router();
 
-const verifyToken = require('../middleware/verifyToken');
+const { verifyToken } = require('../middleware/Auth');
 
-const { addtodo, viewTodo } = require('../controllers/TodoController');
+const { addtodo, viewTodo, deleteTodo, updateTodo } = require('../controllers/TodoController');
 
 
 routes.post('/addtodo', verifyToken, addtodo)
 routes.get('/viewtodo', verifyToken, viewTodo)
+routes.delete('/deletetodo', verifyToken, deleteTodo)
+routes.put('/updatetodo', verifyToken, updateTodo);
 
 module.exports = routes;

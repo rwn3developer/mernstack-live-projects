@@ -68,6 +68,9 @@ const loginUser = async (req, res) => {
         })
     }
 }
+const adminPage = (req, res) => {
+    return res.send({ message: "welcome to admin page" })
+}
 module.exports = {
-    registerUser, loginUser
+    registerUser, loginUser, adminPage
 }

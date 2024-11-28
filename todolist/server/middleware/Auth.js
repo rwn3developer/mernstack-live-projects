@@ -29,5 +29,15 @@ const verifyToken = async (req, res, next) => {
     }
 
 }
-
-module.exports = verifyToken;
+const Admin = (req, res, next) => {
+    if (req.user.role != "admin") {
+        return res.status(400).send({
+            success: false,
+            message: "Unauthorized access contact to admin",
+        });
+    }
+    return next();
+}
+module.exports = {
+    verifyToken, Admin
+}
