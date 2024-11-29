@@ -51,14 +51,15 @@ const loginUser = async (req, res) => {
         if (!user) {
             return res.status(400).send({
                 success: false,
-                message: "User not found"
+                message: "User Email And Password Not Valid"
             });
         }
         const token = await jwt.sign({ payload: user }, "rnw4todolist", { expiresIn: '1hr' })
         return res.status(200).send({
             success: true,
-            message: "Token is here",
-            token
+            message: "User Successfully Register",
+            token,
+            user
         });
 
     } catch (err) {
